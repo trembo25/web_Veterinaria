@@ -23,10 +23,18 @@ if (dia < 10) {
 
 document.getElementById("fecha").min = anio + "-" + mes + "-" + dia;
 
-
 let listaCitas = document.getElementById("listaCitas");
 
 function guardarCita() {
+
+    // Validamos si el usuario ha iniciado sesión
+    let usuarioLogueado = localStorage.getItem("usuarioLogueado");
+
+    if (!usuarioLogueado) {
+        alert("Debes iniciar sesión para agendar una cita.");
+        window.location.href = "login.html";
+        return;
+    }
 
     let duenio = document.getElementById("duenio").value;
     let mascota = document.getElementById("mascota").value;
