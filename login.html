@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresar | Veterinaria San Marcos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="login-page">
+    <main class="login-card">
+        <a href="index.html" class="login-logo">🐾 Veterinaria San Marcos</a>
+        <h1>Ingresar</h1>
+        <p class="login-intro">Accede a tu cuenta para continuar.</p>
+
+        <form id="login-form">
+            <label for="username">Usuario</label>
+            <input id="username" name="username" type="text" autocomplete="username" required>
+
+            <label for="password">Contraseña</label>
+            <input id="password" name="password" type="password" autocomplete="current-password" required>
+
+            <button type="submit" class="btn-primary login-submit">Ingresar</button>
+            <p id="login-message" class="login-message" role="alert" aria-live="polite"></p>
+        </form>
+
+        <a href="index.html" class="back-link">Volver al inicio</a>
+    </main>
+
+    <script src="login.js"></script>
+</body>
+</html>
