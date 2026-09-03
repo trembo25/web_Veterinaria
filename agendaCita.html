@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Cita | Veterinaria San Marcos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">🐾 Veterinaria San Marcos</div>
+        <nav class="nav">
+            <a href="index.html#inicio">Inicio</a>
+            <a href="index.html#servicios">Servicios</a>
+            <a href="index.html#nosotros">Nosotros</a>
+            <a href="login.html" class="btn-login">Ingresar</a>
+            <a href="agendaCita.html" class="btn-nav">Agendar Cita</a>
+        </nav>
+    </header>
+
+    <main class="cita-page">
+        <div class="cita-container">
+
+            <div class="cita-card">
+                <h1>Agenda tu Cita</h1>
+                <p class="cita-intro">Completa el formulario y te confirmaremos el horario a la brevedad.</p>
+
+                <form id="cita-form">
+                    <label for="duenio">Nombre del dueño</label>
+                    <input id="duenio" name="duenio" type="text">
+
+                    <label for="mascota">Nombre de la mascota</label>
+                    <input id="mascota" name="mascota" type="text">
+
+                    <label for="servicio">Servicio</label>
+                    <select id="servicio" name="servicio">
+                        <option value="">Selecciona un servicio</option>
+                    </select>
+
+                    <label for="fecha">Fecha</label>
+                    <input id="fecha" name="fecha" type="date">
+
+                    <label for="hora">Hora</label>
+                    <input id="hora" name="hora" type="time">
+
+                    <label for="notas">Notas adicionales (opcional)</label>
+                    <textarea id="notas" name="notas" placeholder="Ej: primera vez, alergias, comportamiento de la mascota..."></textarea>
+
+                    <button type="button" class="btn-primary cita-submit" onclick="guardarCita()">Solicitar Cita</button>
+                    <p id="cita-message" class="cita-message" role="alert" aria-live="polite"></p>
+                </form>
+            </div>
+
+            <div class="citas-lista">
+                <h2>Mis Solicitudes</h2>
+                <div id="listaCitas"></div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer id="contacto" class="footer">
+        <div class="footer-content">
+            <h3>Veterinaria San Marcos</h3>
+            <p>📍 Av. Principal #123, Rancagua</p>
+            <p>📞 Teléfono: +56 9 1234 5678</p>
+            <p>⏰ Horario: Lunes a Sábado de 8:00 a 20:00 hrs.</p>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Veterinaria San Marcos. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="servicios.js"></script>
+    <script src="agendaCita.js"></script>
+</body>
+</html>

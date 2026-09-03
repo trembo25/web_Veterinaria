@@ -12,11 +12,11 @@
     <header class="header">
         <div class="logo">🐾 Veterinaria San Marcos</div>
         <nav class="nav">
-            <a href="#inicio">Inicio</a>
-            <a href="#servicios">Servicios</a>
-            <a href="#nosotros">Nosotros</a>
+            <a href="index.html#inicio">Inicio</a>
+            <a href="index.html#servicios">Servicios</a>
+            <a href="index.html#nosotros">Nosotros</a>
             <a href="login.html" class="btn-login">Ingresar</a>
-            <a href="#contacto" class="btn-nav">Agendar Cita</a>
+            <a href="agendaCita.html" class="btn-nav">Agendar Cita</a>
         </nav>
     </header>
 
@@ -24,41 +24,45 @@
         <div class="hero-content">
             <h1>Cuidando a las mascotas de Rancagua desde 2009</h1>
             <p>Atención médica especializada, historial clínico digital y el mejor trato para tus compañeros de vida.</p>
-            <a href="#contacto" class="btn-primary">Solicitar una Cita</a>
+            <a href="agendaCita.html" class="btn-primary">Solicitar una Cita</a>
         </div>
     </section>
 
-    <section id="servicios" class="servicios">
-        <h2>Nuestros Servicios</h2>
-        <div class="servicios-grid">
-            <div class="card">
-                <div class="icon">🩺</div>
-                <h3>Consulta General</h3>
-                <p>Revisiones preventivas, diagnósticos precisos y seguimiento médico continuo.</p>
-                <button onclick="verDetalle()">Ver Detalles</button>
-            </div>
-            <div class="card">
-                <div class="icon">💉</div>
-                <h3>Vacunación</h3>
-                <p>Esquemas de vacunación completos para cachorros y mascotas adultas.</p>
-            </div>
-            <div class="card">
-                <div class="icon">🔪</div>
-                <h3>Cirugía menor</h3>
-                <p>Procedimientos quirúrgicos ambulatorios realizados por nuestro equipo veterinario certificado.</p>
-            </div>
-            <div class="card">
-                <div class="icon">🐛</div>
-                <h3>Desparasitación</h3>
-                <p>Control interno y externo de parásitos, adaptado a la edad y especie de tu mascota.</p>
-            </div>
-                <div class="card">
-                <div class="icon">⚖️</div>
-                <h3>Control de Peso</h3>
-                <p>Seguimiento nutricional para mantener a tu mascota en su peso ideal y prevenir enfermedades.</p>
-            </div>
+<section id="servicios" class="servicios">
+    <h2>Nuestros Servicios</h2>
+    <div class="servicios-grid">
+        <div class="card">
+            <div class="icon">🩺</div>
+            <h3>Consulta General</h3>
+            <p>Revisiones preventivas, diagnósticos precisos y seguimiento médico continuo.</p>
+            <button class="btn-card" onclick="verDetalle(1)">Ver Detalles</button>
         </div>
-    </section>
+        <div class="card">
+            <div class="icon">💉</div>
+            <h3>Vacunación</h3>
+            <p>Esquemas de vacunación completos para cachorros y mascotas adultas.</p>
+            <button class="btn-card" onclick="verDetalle(2)">Ver Detalles</button>
+        </div>
+        <div class="card">
+            <div class="icon">🔪</div>
+            <h3>Cirugía menor</h3>
+            <p>Procedimientos quirúrgicos ambulatorios realizados por nuestro equipo veterinario certificado.</p>
+            <button class="btn-card" onclick="verDetalle(3)">Ver Detalles</button>
+        </div>
+        <div class="card">
+            <div class="icon">🐛</div>
+            <h3>Desparasitación</h3>
+            <p>Control interno y externo de parásitos, adaptado a la edad y especie de tu mascota.</p>
+            <button class="btn-card" onclick="verDetalle(4)">Ver Detalles</button>
+        </div>
+        <div class="card">
+            <div class="icon">⚖️</div>
+            <h3>Control de Peso</h3>
+            <p>Seguimiento nutricional para mantener a tu mascota en su peso ideal y prevenir enfermedades.</p>
+            <button class="btn-card" onclick="verDetalle(5)">Ver Detalles</button>
+        </div>
+    </div>
+</section>
 
     <section id="nosotros" class="nosotros">
         <div class="nosotros-texto">
