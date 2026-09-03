@@ -197,3 +197,37 @@ body {
     font-size: 0.85rem;
     color: #94a3b8;
 }
+-----------------------------------------------------------------------------------------------------
+/* Detalle de Servicio */
+.detalle-servicio {
+    padding: 80px 8%;
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+}
+
+.tarjeta-detalle-servicio {
+    background: white;
+    max-width: 500px;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.icono-detalle {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.tarjeta-detalle-servicio h1 {
+    color: #028090;
+    margin-bottom: 15px;
+}
+
+.tarjeta-detalle-servicio p {
+    color: #555;
+    margin-bottom: 25px;
+}
