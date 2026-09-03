@@ -18,6 +18,13 @@ loginForm.addEventListener('submit', (event) => {
     const formData = new FormData(loginForm);
     const username = formData.get('username').trim().toLowerCase();
     const password = formData.get('password');
+
+    // Validar si algún campo está vacío y mostrar un alert
+    if (username === "" || password === "") {
+        alert("Por favor completa todos los campos obligatorios.");
+        return;
+    }
+
     const user = users[username];
 
     if (!user || user.password !== password) {
@@ -25,6 +32,12 @@ loginForm.addEventListener('submit', (event) => {
         loginMessage.className = 'login-message error';
         return;
     }
+
+    const sesionActual = {
+        username: username,
+        role: user.role
+    };
+    localStorage.setItem("usuarioLogueado", JSON.stringify(sesionActual));
 
     loginMessage.textContent = `Bienvenido, ${user.role}.`;
     loginMessage.className = 'login-message success';
