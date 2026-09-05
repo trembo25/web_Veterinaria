@@ -15,7 +15,13 @@
             <a href="index.html#inicio">Inicio</a>
             <a href="index.html#servicios">Servicios</a>
             <a href="index.html#nosotros">Nosotros</a>
-            <a href="login.html" class="btn-login">Ingresar</a>
+            <div class="menu-usuario">
+                <a href="login.html" id="login-nav" class="btn-login">Ingresar</a>
+
+                <div id="menu-desplegable" class="menu-desplegable oculto">
+                    <button id="logout-nav" class="opcion-menu">Cerrar sesión</button>
+                </div>
+            </div>
             <a href="agendaCita.html" class="btn-nav">Agendar Cita</a>
         </nav>
     </header>
@@ -90,5 +96,6 @@
 
 
     <script src="servicios.js"></script>
+    <script src="sesion.js"></script>
 </body>
 </html>

@@ -15,7 +15,7 @@
             <a href="index.html#inicio">Inicio</a>
             <a href="index.html#servicios">Servicios</a>
             <a href="index.html#nosotros">Nosotros</a>
-            <a href="login.html" class="btn-login">Ingresar</a>
+            <<a href="login.html" id="login-nav" class="btn-login">Ingresar</a>
             <a href="agendaCita.html" class="btn-nav">Agendar Cita</a>
         </nav>
     </header>
@@ -40,10 +40,12 @@
                     </select>
 
                     <label for="fecha">Fecha</label>
-                    <input id="fecha" name="fecha" type="date">
+                    <input id="fecha" name="fecha" type="date" onchange="validarFecha()">
 
                     <label for="hora">Hora</label>
-                    <input id="hora" name="hora" type="time">
+                    <select id="hora" name="hora">
+                        <option value="">Selecciona una hora</option>
+                    </select>
 
                     <label for="notas">Notas adicionales (opcional)</label>
                     <textarea id="notas" name="notas" placeholder="Ej: primera vez, alergias, comportamiento de la mascota..."></textarea>
@@ -75,5 +77,6 @@
 
     <script src="servicios.js"></script>
     <script src="agendaCita.js"></script>
+    <script src="sesion.js"></script>
 </body>
 </html>

@@ -8,6 +8,18 @@ for (let i = 0; i < Servicios.length; i++) {
     selectServicio.appendChild(opcion);
 }
 
+// Llenamos el select de horas: de 09:00 a 18:00, cada una hora
+let selectHora = document.getElementById("hora");
+
+for (let h = 9; h <= 18; h++) {
+    let horaTexto = h;
+    if (h < 10) { horaTexto = "0" + h; }
+    let opcion = document.createElement("option");
+    opcion.value = horaTexto + ":00";
+    opcion.textContent = horaTexto + ":00";
+    selectHora.appendChild(opcion);
+}
+
 // No se pueden agendar citas en fechas pasadas
 let hoy = new Date();
 let anio = hoy.getFullYear();
@@ -22,6 +34,19 @@ if (dia < 10) {
 }
 
 document.getElementById("fecha").min = anio + "-" + mes + "-" + dia;
+
+// No se pueden agendar citas en sábado ni domingo
+function validarFecha() {
+
+    let fechaInput = document.getElementById("fecha");
+    let fecha = new Date(fechaInput.value + "T00:00:00");
+    let diaSemana = fecha.getDay();
+
+    if (diaSemana === 0 || diaSemana === 6) {
+        alert("Solo se pueden agendar citas de lunes a viernes.");
+        fechaInput.value = "";
+    }
+}
 
 let listaCitas = document.getElementById("listaCitas");
 
