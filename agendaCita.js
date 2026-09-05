@@ -36,12 +36,12 @@ function guardarCita() {
         return;
     }
 
-    let duenio = document.getElementById("duenio").value;
-    let mascota = document.getElementById("mascota").value;
+    let duenio = document.getElementById("duenio").value.trim();
+    let mascota = document.getElementById("mascota").value.trim();
     let servicioId = document.getElementById("servicio").value;
     let fecha = document.getElementById("fecha").value;
     let hora = document.getElementById("hora").value;
-    let notas = document.getElementById("notas").value;
+    let notas = document.getElementById("notas").value.trim();
 
     document.getElementById("cita-message").textContent = "";
 
@@ -56,24 +56,21 @@ function guardarCita() {
     for (let i = 0; i < Servicios.length; i++) {
         if (Servicios[i].id == servicioId) {
             servicioNombre = Servicios[i].nombre;
+            break;
         }
     }
 
+    // Guardamos con la misma estructura que usa admin.js
     let nuevaCita = {
-        duenio: duenio,
+        id: Date.now(),
+        dueno: duenio,          // mismo nombre que en admin.js
         mascota: mascota,
-        servicioNombre: servicioNombre,
-        fecha: fecha,
-        hora: hora,
-        notas: notas,
+        servicio: servicioNombre, // mismo nombre que en admin.js
+        fecha: fecha + 'T' + hora, // formato ISO como en admin.js
         estado: "Pendiente"
     };
 
-    let citas = JSON.parse(localStorage.getItem("citas"));
-
-    if (citas === null) {
-        citas = [];
-    }
+    let citas = JSON.parse(localStorage.getItem("citas")) || [];
 
     citas.push(nuevaCita);
 
@@ -81,26 +78,51 @@ function guardarCita() {
 
     document.getElementById("cita-message").textContent = "¡Tu solicitud fue registrada!";
 
+    // Limpiamos el formulario
+    document.getElementById("duenio").value = "";
+    document.getElementById("mascota").value = "";
+    document.getElementById("servicio").value = "";
+    document.getElementById("fecha").value = "";
+    document.getElementById("hora").value = "";
+    document.getElementById("notas").value = "";
+
     renderizarCitas();
 }
 
 function renderizarCitas() {
 
-    let citas = JSON.parse(localStorage.getItem("citas"));
-
-    if (citas === null) {
-        citas = [];
-    }
+    let citas = JSON.parse(localStorage.getItem("citas")) || [];
 
     listaCitas.innerHTML = "";
 
     for (let i = 0; i < citas.length; i++) {
+        let cita = citas[i];
+
+        // Soporte para estructura nueva (admin) y posible estructura vieja
+        let duenioMostrar = cita.dueno || cita.duenio || "Sin dueño";
+        let mascotaMostrar = cita.mascota || "Sin mascota";
+        let servicioMostrar = cita.servicio || cita.servicioNombre || "Sin servicio";
+
+        let fechaMostrar = cita.fecha || "";
+        let horaMostrar = "";
+
+        // Si la fecha viene con hora incluida (ISO)
+        if (fechaMostrar.includes("T")) {
+            let partes = fechaMostrar.split("T");
+            fechaMostrar = partes[0];
+            horaMostrar = partes[1] ? partes[1].substring(0, 5) : "";
+        } else {
+            // Si viene hora separada (estructura antigua)
+            horaMostrar = cita.hora || "";
+        }
+
+        let estadoMostrar = cita.estado || "Pendiente";
 
         listaCitas.innerHTML += `
             <div class="cita-item">
-                <strong>${citas[i].mascota}</strong> (${citas[i].duenio}) - ${citas[i].servicioNombre}<br>
-                Fecha: ${citas[i].fecha} a las ${citas[i].hora}
-                <br><span class="estado">${citas[i].estado}</span>
+                <strong>${mascotaMostrar}</strong> (${duenioMostrar}) - ${servicioMostrar}<br>
+                Fecha: ${fechaMostrar}${horaMostrar ? " a las " + horaMostrar : ""}
+                <br><span class="estado">${estadoMostrar}</span>
             </div>
         `;
     }

@@ -1,27 +1,20 @@
 const users = {
-    admin: {
-        password: 'admin123',
-        role: 'Administrador'
-    },
-    cliente: {
-        password: 'cliente123',
-        role: 'Cliente'
-    }
+    admin: { password: 'admin123', role: 'Administrador' },
+    cliente: { password: 'cliente123', role: 'Cliente' }
 };
 
-const loginForm = document.querySelector('#login-form');
-const loginMessage = document.querySelector('#login-message');
+const loginForm = document.getElementById('login-form');
+const loginMessage = document.getElementById('login-message');
 
-loginForm.addEventListener('submit', (event) => {
-    event.preventDefault();
+loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-    const formData = new FormData(loginForm);
-    const username = formData.get('username').trim().toLowerCase();
-    const password = formData.get('password');
+    const form = e.target;
+    const username = form.username.value.trim().toLowerCase();
+    const password = form.password.value;
 
-    // Validar si algún campo está vacío y mostrar un alert
-    if (username === "" || password === "") {
-        alert("Por favor completa todos los campos obligatorios.");
+    if (!username || !password) {
+        alert('Por favor completa todos los campos obligatorios.');
         return;
     }
 
@@ -33,16 +26,15 @@ loginForm.addEventListener('submit', (event) => {
         return;
     }
 
-    const sesionActual = {
-        username: username,
+    localStorage.setItem('usuarioLogueado', JSON.stringify({
+        username,
         role: user.role
-    };
-    localStorage.setItem("usuarioLogueado", JSON.stringify(sesionActual));
+    }));
 
     loginMessage.textContent = `Bienvenido, ${user.role}.`;
     loginMessage.className = 'login-message success';
 
-    window.setTimeout(() => {
-        window.location.href = username === 'admin' ? 'admin.html' : 'cliente.html';
+    setTimeout(() => {
+        location.href = username === 'admin' ? 'admin.html' : 'cliente.html';
     }, 500);
 });

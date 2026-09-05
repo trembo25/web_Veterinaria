@@ -3,15 +3,300 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Panel de administración | Veterinaria San Marcos</title>
+
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin.css">
 </head>
-<body class="role-page">
-    <main class="role-card">
-        <div class="role-icon">🩺</div>
-        <h1>Panel de administración</h1>
-        <p>Has ingresado como administrador de Veterinaria San Marcos.</p>
-        <a href="index.html" class="btn-primary">Volver al inicio</a>
+
+<body class="admin-page">
+
+    <header class="admin-header">
+        <div>
+            <h1>🐾 Veterinaria San Marcos</h1>
+            <p>Panel de administración</p>
+        </div>
+
+        <button id="logout-button" class="btn-logout">
+            Cerrar sesión
+        </button>
+    </header>
+
+    <nav class="admin-nav">
+        <a href="#resumen">Resumen</a>
+        <a href="#servicios-admin">Servicios</a>
+        <a href="#usuarios-admin">Usuarios</a>
+        <a href="#citas-admin">Citas</a>
+        <a href="index.html">Sitio público</a>
+    </nav>
+
+    <main class="admin-container">
+
+        <section id="resumen" class="admin-welcome">
+            <h2>Bienvenido al panel de administración</h2>
+            <p>
+                Desde aquí puedes gestionar los servicios, usuarios y solicitudes
+                de cita de la veterinaria.
+            </p>
+        </section>
+
+        <section class="admin-stats">
+            <article class="stat-card">
+                <span>🩺</span>
+                <h3 id="total-servicios">0</h3>
+                <p>Servicios registrados</p>
+            </article>
+
+            <article class="stat-card">
+                <span>👥</span>
+                <h3 id="total-usuarios">0</h3>
+                <p>Usuarios registrados</p>
+            </article>
+
+            <article class="stat-card">
+                <span>📅</span>
+                <h3 id="total-citas">0</h3>
+                <p>Citas pendientes</p>
+            </article>
+        </section>
+
+        <section id="servicios-admin" class="admin-section">
+            <div class="section-title">
+                <div>
+                    <h2>Mantenedor de servicios</h2>
+                    <p>Consulta, agrega, edita o elimina servicios.</p>
+                </div>
+
+                <button id="nuevo-servicio-button" class="btn-primary">
+                    Nuevo servicio
+                </button>
+            </div>
+
+            <div id="servicios-lista" class="admin-grid"></div>
+
+            <form id="servicio-form" class="admin-form hidden">
+
+                <h3 id="servicio-form-title">Agregar servicio</h3>
+
+                <input type="hidden" id="servicio-id">
+
+                <label for="servicio-nombre">Nombre del servicio</label>
+                <input
+                    type="text"
+                    id="servicio-nombre"
+                    maxlength="80"
+                    required
+                >
+
+                <label for="servicio-descripcion">Descripción</label>
+                <textarea
+                    id="servicio-descripcion"
+                    maxlength="300"
+                    required
+                ></textarea>
+
+                <label for="servicio-categoria">Categoría</label>
+                <select id="servicio-categoria" required>
+                    <option value="">Selecciona una categoría</option>
+                    <option value="Prevención">Prevención</option>
+                    <option value="Tratamiento">Tratamiento</option>
+                    <option value="Control">Control</option>
+                </select>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">
+                        Guardar servicio
+                    </button>
+
+                    <button
+                        type="button"
+                        id="cancelar-servicio-button"
+                        class="btn-secondary"
+                    >
+                        Cancelar
+                    </button>
+                </div>
+
+                <p id="servicio-message" class="admin-message"></p>
+            </form>
+        </section>
+
+        <section id="usuarios-admin" class="admin-section">
+            <div class="section-title">
+                <div>
+                    <h2>Mantenedor de usuarios</h2>
+                    <p>Administra los usuarios y sus roles.</p>
+                </div>
+
+                <button id="nuevo-usuario-button" class="btn-primary">
+                    Nuevo usuario
+                </button>
+            </div>
+
+            <div class="table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Nombre</th>
+                            <th>Rol</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="usuarios-tabla"></tbody>
+                </table>
+            </div>
+
+            <form id="usuario-form" class="admin-form hidden">
+
+                <h3 id="usuario-form-title">Agregar usuario</h3>
+
+                <input type="hidden" id="usuario-id">
+
+                <label for="usuario-nombre">Nombre completo</label>
+                <input
+                    type="text"
+                    id="usuario-nombre"
+                    maxlength="100"
+                    required
+                >
+
+                <label for="usuario-email">Correo electrónico</label>
+                <input
+                    type="email"
+                    id="usuario-email"
+                    maxlength="100"
+                    required
+                >
+
+                <label for="usuario-rol">Tipo de usuario</label>
+                <select id="usuario-rol" required>
+                    <option value="">Selecciona un rol</option>
+                    <option value="Administrador">Administrador</option>
+                    <option value="Cliente">Cliente</option>
+                </select>
+
+                <label for="usuario-estado">Estado</label>
+                <select id="usuario-estado" required>
+                    <option value="Activo">Activo</option>
+                    <option value="Inactivo">Inactivo</option>
+                </select>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">
+                        Guardar usuario
+                    </button>
+
+                    <button
+                        type="button"
+                        id="cancelar-usuario-button"
+                        class="btn-secondary"
+                    >
+                        Cancelar
+                    </button>
+                </div>
+
+                <p id="usuario-message" class="admin-message"></p>
+            </form>
+        </section>
+
+        <section id="citas-admin" class="admin-section">
+            <div class="section-title">
+                <div>
+                    <h2>Solicitudes de citas</h2>
+                    <p>Revisa, crea, edita o elimina citas.</p>
+                </div>
+
+                <button id="nueva-cita-button" class="btn-primary">
+                    Nueva cita
+                </button>
+            </div>
+
+            <div class="table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Dueño</th>
+                            <th>Mascota</th>
+                            <th>Servicio</th>
+                            <th>Fecha</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="citas-tabla"></tbody>
+                </table>
+            </div>
+
+            <form id="cita-form" class="admin-form hidden">
+
+                <h3 id="cita-form-title">Agregar cita</h3>
+
+                <input type="hidden" id="cita-id">
+
+                <label for="cita-dueno">Nombre del dueño</label>
+                <input
+                    type="text"
+                    id="cita-dueno"
+                    maxlength="100"
+                    required
+                >
+
+                <label for="cita-mascota">Nombre de la mascota</label>
+                <input
+                    type="text"
+                    id="cita-mascota"
+                    maxlength="80"
+                    required
+                >
+
+                <label for="cita-servicio">Servicio</label>
+                <select id="cita-servicio" required>
+                    <option value="">Selecciona un servicio</option>
+                </select>
+
+                <label for="cita-fecha">Fecha y hora</label>
+                <input
+                    type="datetime-local"
+                    id="cita-fecha"
+                    required
+                >
+
+                <label for="cita-estado">Estado</label>
+                <select id="cita-estado" required>
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="Confirmada">Confirmada</option>
+                    <option value="Cancelada">Cancelada</option>
+                </select>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">
+                        Guardar cita
+                    </button>
+
+                    <button
+                        type="button"
+                        id="cancelar-cita-button"
+                        class="btn-secondary"
+                    >
+                        Cancelar
+                    </button>
+                </div>
+
+                <p id="cita-message" class="admin-message"></p>
+            </form>
+        </section>
+
     </main>
+
+    <footer class="admin-footer">
+        <p>Veterinaria San Marcos © 2026</p>
+    </footer>
+
+    <script src="admin.js"></script>
 </body>
 </html>
